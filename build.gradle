@@ -14,6 +14,7 @@ dependencies {
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.9.0'
     testImplementation 'io.cucumber:cucumber-java8:7.12.0'
     testImplementation 'io.cucumber:cucumber-testng:7.12.0'
+    testImplementation 'ru.sbtqa:webdrivermanager:2.2.4'
 }
 
 test {
