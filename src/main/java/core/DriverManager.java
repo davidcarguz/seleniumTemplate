@@ -1,8 +1,8 @@
 package core;
 
 import org.openqa.selenium.WebDriver;
-import utils.Browser;
 import utils.DriverUtils;
+import utils.PropertiesManager;
 
 public class DriverManager {
 
@@ -15,9 +15,10 @@ public class DriverManager {
      * creates a WebDriver instance and configures it.
      */
     public void initiateDriver() {
-        this.driver = DriverUtils.initDriver(Browser.CHROME);
+        PropertiesManager.setPropertiesFromFile();
+        this.driver = DriverUtils.initDriver(System.getProperty("BROWSER"));
         this.driver.manage().window().maximize();
-        this.driver.get("https://www.wizeline.com/");
+        this.driver.get(System.getProperty("URL"));
     }
 
     /**

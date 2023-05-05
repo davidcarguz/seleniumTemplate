@@ -18,18 +18,18 @@ public final class DriverUtils {
      * @param browser selection.
      * @return {WebDriver} driver instance.
      */
-    public static WebDriver initDriver(final Browser browser) {
+    public static WebDriver initDriver(final String browser) {
         WebDriver driver;
         switch (browser) {
-            case CHROME:
+            case "CHROME":
                 ChromeDriverManager.getInstance().version("113.0").setup();
                 driver = new ChromeDriver();
                 break;
-            case FIREFOX:
+            case "FIREFOX":
                 FirefoxDriverManager.getInstance();
                 driver = new FirefoxDriver();
                 break;
-            case EDGE:
+            case "EDGE":
                 EdgeDriverManager.getInstance();
                 driver = new EdgeDriver();
                 break;
