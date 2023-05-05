@@ -1,0 +1,14 @@
+name: Checkstyle PR check
+on: [pull_request]
+jobs:
+  CheckStyle:
+    name: Checkstyle code verification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: checkstyle configuration
+      - uses: dbelyaev/action-checkstyle@v0.7.5
+        with:
+          reporter: github-pr-review
+          level: warning
+          fail-on-error: true
