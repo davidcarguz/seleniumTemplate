@@ -13,6 +13,11 @@ public final class DriverUtils {
 
     private DriverUtils() { }
 
+    /**
+     * Dynamically instantiate a driver based on browser selection.
+     * @param browser selection.
+     * @return {WebDriver} driver instance.
+     */
     public static WebDriver initDriver(final Browser browser) {
         WebDriver driver;
         switch (browser) {
