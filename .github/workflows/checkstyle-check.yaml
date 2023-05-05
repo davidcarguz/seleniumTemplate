@@ -8,6 +8,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: dbelyaev/action-checkstyle@v0.7.5
         with:
+          checkstyle_config: sun_checks.xml
           reporter: github-pr-review
           level: warning
           fail_on_error: true
