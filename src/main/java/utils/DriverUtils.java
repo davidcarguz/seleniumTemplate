@@ -1,6 +1,5 @@
 package utils;
 
-import io.github.bonigarcia.wdm.BrowserManager;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.EdgeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
@@ -10,9 +9,11 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 
-public class DriverUtils {
+public final class DriverUtils {
 
-    public static WebDriver initDriver(Browser browser) {
+    private DriverUtils() { }
+
+    public static WebDriver initDriver(final Browser browser) {
         WebDriver driver;
         switch (browser) {
             case CHROME:
@@ -31,5 +32,5 @@ public class DriverUtils {
                 throw new Error("Driver not supported");
         }
         return driver;
-    };
-};
+    }
+}
