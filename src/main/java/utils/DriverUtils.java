@@ -26,11 +26,11 @@ public final class DriverUtils {
                 driver = new ChromeDriver();
                 break;
             case "FIREFOX":
-                FirefoxDriverManager.getInstance();
+                FirefoxDriverManager.getInstance().setup();
                 driver = new FirefoxDriver();
                 break;
             case "EDGE":
-                EdgeDriverManager.getInstance();
+                EdgeDriverManager.getInstance().setup();
                 driver = new EdgeDriver();
                 break;
             default:
