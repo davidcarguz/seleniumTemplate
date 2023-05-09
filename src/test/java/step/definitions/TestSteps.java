@@ -33,7 +33,7 @@ public final class TestSteps {
      * @param searchedWord expected word
      */
     @Then("I see results include the word {string}")
-    public void iSeeResultsIncludeTheWord(String searchedWord) {
+    public void iSeeResultsIncludeTheWord(final String searchedWord) {
         String obtainedWord = testPage.getSideTitleText();
         assertThat(obtainedWord).matches(searchedWord);
     }
