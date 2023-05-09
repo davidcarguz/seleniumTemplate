@@ -1,39 +1,34 @@
 package core;
 
 import org.openqa.selenium.WebDriver;
-import utils.DriverUtils;
-import utils.PropertiesManager;
+import org.openqa.selenium.support.PageFactory;
 
 public class DriverManager {
 
     /**
-     * WebDriver variable to execute test over the browser.
+     * Creates basic driver configuration.
+     * @param driver instance.
      */
-    private WebDriver driver;
-
-    /**
-     * creates a WebDriver instance and configures it.
-     */
-    public void initiateDriver() {
-        PropertiesManager.setPropertiesFromFile();
-        this.driver = DriverUtils.initDriver(System.getProperty("BROWSER"));
-        this.driver.manage().window().maximize();
-        this.driver.get(System.getProperty("URL"));
+    public void setupDriver(final WebDriver driver) {
+        driver.manage().window().maximize();
+        driver.get(System.getProperty("URL"));
     }
 
     /**
      * closes all windows.
+     * @param driver driver instance.
      */
-    public void terminateDriver() {
-        this.driver.quit();
+    public void terminateDriver(final WebDriver driver) {
+        driver.quit();
     }
 
     /**
-     * Makes available WebDriver instance.
-     * @return {WebDriver} driver instance.
+     * Implements page factory in specified page.
+     * @param driver instance.
+     * @param page page instance.
      */
-    public WebDriver getDriver() {
-        return this.driver;
+    public void initiatePage(final WebDriver driver, final Object page) {
+        PageFactory.initElements(driver, page);
     }
 
 }
