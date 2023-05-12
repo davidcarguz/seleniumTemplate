@@ -3,6 +3,8 @@ package utils;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.EdgeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -37,5 +39,19 @@ public final class DriverUtils {
                 throw new Error("Driver not supported");
         }
         return driver;
+    }
+
+    /**
+     * Create a screenshot as an array of bytes.
+     * @param driver instance
+     * @return screenshot as an array of bytes
+     */
+    public static byte[] getScreenshotAsBytes(final WebDriver driver) {
+        try {
+            return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        } catch (Exception e) {
+            throw new Error(
+                    "Something went wrong while taking the screenshot.", e);
+        }
     }
 }
