@@ -26,7 +26,7 @@ Install dependencies
 Run the tests
 
 ```bash
-  gradle test
+  gradle clean test
 ```
 
 
@@ -34,7 +34,7 @@ Run the tests
 The framework uses Allure to generate the report. It is necessary to install the Allure server locally.
 - the following link explains the instalation process in different systems: [Allure Installation](https://docs.qameta.io/allure/#_installing_a_commandline)
 
-After running the tests open a terminal window in the project path and run the wollogin command:
+After running the tests open a terminal window in the project path and run the following command:
 ```bash
 allure serve allure-results
 ```
