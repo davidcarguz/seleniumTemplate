@@ -1,5 +1,5 @@
-Feature: Test Feature
+Feature: Google search
 
-  Scenario: Test Scenario
+  Scenario: Google search for a word
     When I search for 'Colombia'
     Then I see results include the word 'Colombia'
