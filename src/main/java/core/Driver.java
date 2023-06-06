@@ -16,7 +16,8 @@ public class Driver {
      */
     public WebDriver getDriver() {
         if (driver == null) {
-            driver = DriverUtils.initDriver(System.getProperty("BROWSER"));
+            driver = DriverUtils.initDriver(System.getProperty("BROWSER"),
+                    System.getProperty("CI"));
         }
         return driver;
     }

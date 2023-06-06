@@ -1,1 +1,9 @@
 name: execute tests in pipeline
+on: [pull_request]
+jobs:
+  RunTests:
+    name: Run tests in Pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
