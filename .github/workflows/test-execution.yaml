@@ -5,5 +5,18 @@ jobs:
     name: Run tests in Pipeline
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout repository
+        uses: actions/checkout@v3
+      - name: setup gradle
+        uses: gradle/gradle-build-action@v2
+      - name: setup chrome
+        uses: browser-actions/setup-chrome@v1
+      - name: set properties from file
+        uses: madhead/read-java-properties@latest
+        id: all
+        with:
+          file: config.properties
+          all: true
+
+
 
