@@ -1,4 +1,4 @@
-name: execute tests in pipeline
+name: Execute tests in pipeline
 on: [pull_request]
 jobs:
   RunTests:
