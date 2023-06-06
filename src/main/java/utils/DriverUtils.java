@@ -24,7 +24,7 @@ public final class DriverUtils {
         WebDriver driver;
         switch (browser) {
             case "CHROME":
-                ChromeDriverManager.getInstance().version("113.0").setup();
+                ChromeDriverManager.getInstance().setup();
                 driver = new ChromeDriver();
                 break;
             case "FIREFOX":
