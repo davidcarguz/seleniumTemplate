@@ -17,6 +17,7 @@ jobs:
         with:
           file: config.properties
           all: true
+      - name: execute tests
         run: ./gradlew clean test
 
 
