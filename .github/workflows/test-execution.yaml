@@ -17,7 +17,7 @@ jobs:
         with:
           file: config.properties
           all: true
-      - name: execute tests
+      - name: execute ui tests
         run: ./gradlew clean test
       - name: upload report
         uses: actions/upload-artifact@v3
