@@ -24,6 +24,3 @@ jobs:
         with:
           name: cucumber-report
           path: ./build/reports/tests/test/index.html
-
-
-
