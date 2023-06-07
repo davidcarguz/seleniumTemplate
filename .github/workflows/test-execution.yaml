@@ -23,5 +23,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: cucumber-report
-          path: build/reports/tests/test
+          name: reports
+          path: |
+            build/reports/tests/test/
+            allure-results/
+          
