@@ -19,6 +19,11 @@ jobs:
           all: true
       - name: execute tests
         run: ./gradlew clean test
+      - name: upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: cucumber-report
+          path: ./build/reports/tests/test/index.html
 
 
 
