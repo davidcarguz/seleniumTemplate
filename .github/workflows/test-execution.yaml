@@ -19,7 +19,9 @@ jobs:
           all: true
       - name: execute ui tests
         run: ./gradlew clean test
-      - uses: actions/upload-artifact@v3
+      - name: upload cucumber report
+        if: always()
+        uses: actions/upload-artifact@v3
         with:
           name: cucumber-report
-          path: config.properties
+          path: build/reports/tests/test/index.html
