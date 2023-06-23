@@ -14,11 +14,18 @@ public class Driver {
      * retrieves an WebDriver instance.
      * @return WebDriver instance.
      */
-    public WebDriver getDriver() {
+    protected WebDriver getDriver() {
         if (driver == null) {
             driver = DriverUtils.initDriver(System.getProperty("BROWSER"),
                     System.getProperty("CI"));
         }
         return driver;
+    }
+
+    /**
+     * set back the driver variable to a null value.
+     */
+    protected void clearDriver() {
+        driver = null;
     }
 }
