@@ -1,0 +1,28 @@
+name: Execute tests in pipeline
+on: [pull_request]
+jobs:
+  RunTests:
+    name: Run tests in Pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+      - name: setup gradle
+        uses: gradle/gradle-build-action@v2
+      - name: set properties from file
+        uses: madhead/read-java-properties@latest
+        id: all
+        with:
+          file: config.properties
+          all: true
+      - name: execute ui tests
+        run: ./gradlew clean test
+      - name: upload cucumber report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports
+          path: |
+            build/reports/tests/test/
+            allure-results/
+          

@@ -52,5 +52,6 @@ public class Hooks extends Driver {
         Allure.addAttachment(scenario.getName(),
                 new ByteArrayInputStream(screenshot));
         driverManager.terminateDriver(driver);
+        clearDriver();
     }
 }
