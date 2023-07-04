@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class TestPage extends Driver {
+public class LoginPage extends Driver {
 
     /**
      * WebDriver variable.
@@ -34,16 +34,6 @@ public class TestPage extends Driver {
     @FindBy(css = "textarea[class='gLFyf']")
     private WebElement searchTextArea;
 
-    /**
-     * Search button.
-     */
-    @FindBy(xpath = "(//input[@class='gNO89b'])[2]")
-    private WebElement searchButton;
-    /**
-     * Title in left side.
-     */
-    @FindBy(css = "div[class='SPZz6b'] h2 span")
-    private WebElement sideTitle;
     /**
      * Site
      */
@@ -79,7 +69,7 @@ public class TestPage extends Driver {
     /**
      * Test page constructor.
      */
-    public TestPage() {
+    public LoginPage() {
         DriverManager driverManager = new DriverManager();
         driver = getDriver();
         driverManager.initiatePage(driver, this);
@@ -88,29 +78,60 @@ public class TestPage extends Driver {
 
     /**
      * waits for search text area to be visible and inputs the word.
-     * @param word to be searched
+     * @param store,site to be searched
      * @return TestPage instance
      */
-    public TestPage seachForAWord(final String word) {
+    public LoginPage openDemoblaze(final String store, final String site) {
         wait.until(ExpectedConditions.visibilityOf(searchTextArea));
-        searchTextArea.sendKeys(word);
+        searchTextArea.sendKeys(site);
+        searchTextArea.sendKeys(Keys.ENTER);
         return this;
     };
 
     /**
      * Clicks on search button after waiting for it to be clickable.
      */
-    public void clickSearchButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(searchButton));
-        searchButton.click();
+    public void selectStorePage() {
+        wait.until(ExpectedConditions.elementToBeClickable(storeSite));
+        storeSite.click();
+    }
+
+    /**
+     * waits for search text area to be visible and inputs the word.
+     * @param username,password credentials
+     * @return TestPage instance
+     */
+    public LoginPage enterCredentials(final String username, final String password) {
+        wait.until(ExpectedConditions.visibilityOf(startLoginButton));
+        startLoginButton.click();
+        loginUsername.sendKeys(username);
+        loginPassword.sendKeys(password);
+        return this;
+    };
+
+    /**
+     * Clicks on search button after waiting for it to be clickable.
+     */
+    public void clickLoginButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(loginButton));
+        loginButton.click();
     }
 
     /**
      * Gets the side title text.
      * @return String side title text
      */
-    public String getSideTitleText() {
-        wait.until(ExpectedConditions.visibilityOf(sideTitle));
-        return sideTitle.getText();
+    public String getUserText() {
+        wait.until(ExpectedConditions.visibilityOf(nameOfUser));
+        return nameOfUser.getText();
+    }
+
+    public String getAlertText(){
+        wait.until(ExpectedConditions.alertIsPresent());
+        return driver.switchTo().alert().getText();
+    }
+
+    public void acceptAlert() {
+        driver.switchTo().alert().accept();
     }
 }
