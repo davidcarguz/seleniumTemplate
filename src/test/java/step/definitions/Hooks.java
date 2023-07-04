@@ -4,8 +4,13 @@ import core.Driver;
 import core.DriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
+import utils.DriverUtils;
 import utils.PropertiesManager;
+
+import java.io.ByteArrayInputStream;
 
 
 public class Hooks extends Driver {
@@ -39,9 +44,14 @@ public class Hooks extends Driver {
 
     /**
      * After hook executes after each test executed.
+     * @param scenario metadata
      */
     @After
-    public void afterHook() {
+    public void afterHook(final Scenario scenario) {
+        byte[] screenshot = DriverUtils.getScreenshotAsBytes(driver);
+        Allure.addAttachment(scenario.getName(),
+                new ByteArrayInputStream(screenshot));
         driverManager.terminateDriver(driver);
+        clearDriver();
     }
 }
