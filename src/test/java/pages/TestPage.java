@@ -56,7 +56,7 @@ public class TestPage {
      * @param word to be searched
      * @return TestPage instance
      */
-    public TestPage seachForAWord(final String word) {
+    public TestPage searchForAWord(final String word) {
         wait.until(ExpectedConditions.visibilityOf(searchTextArea));
         searchTextArea.sendKeys(word);
         return this;
@@ -84,6 +84,8 @@ public class TestPage {
      */
     public void dismissGooglePopUp() {
         try {
+            wait.until(ExpectedConditions.
+                    elementToBeClickable(popUpDontAcceptButton));
             popUpDontAcceptButton.click();
         } catch (Exception e) {
             System.out.println("popup was not present");

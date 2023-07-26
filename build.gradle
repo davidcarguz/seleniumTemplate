@@ -34,6 +34,7 @@ test {
     useTestNG() {
         useDefaultListeners = true
         scanForTestClasses = false
+        jvmArgs(["-Ddataproviderthreadcount=${threads}"])
         suites "src/test/resources/testng.xml"
     }
 

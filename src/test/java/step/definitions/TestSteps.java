@@ -30,7 +30,7 @@ public final class TestSteps {
     @When("I search for {string}")
     public void iSearchFor(final String searchWord) {
         testPage.dismissGooglePopUp();
-        testPage.seachForAWord(searchWord).clickSearchButton();
+        testPage.searchForAWord(searchWord).clickSearchButton();
     }
 
     /**
