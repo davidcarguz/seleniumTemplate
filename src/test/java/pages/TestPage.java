@@ -11,6 +11,10 @@ import java.time.Duration;
 
 public class TestPage {
     /**
+     * Driver instance.
+     */
+    private final WebDriver driverInstance;
+    /**
      * Wait time in seconds.
      */
     private final int waitTime = 3;
@@ -42,6 +46,11 @@ public class TestPage {
     @FindBy(css = "button[data-dismiss='n']")
     private WebElement popUpDontAcceptButton;
     /**
+     * google Iframe.
+     */
+    @FindBy(css = "iframe[role='presentation']")
+    private WebElement googleIframe;
+    /**
      * Test page constructor.
      * @param driver WebDriver instance.
      */
@@ -49,6 +58,7 @@ public class TestPage {
         DriverManager driverManager = new DriverManager();
         driverManager.initiatePage(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(waitTime));
+        this.driverInstance = driver;
     }
 
     /**
@@ -66,6 +76,7 @@ public class TestPage {
      * Clicks on search button after waiting for it to be clickable.
      */
     public void clickSearchButton() {
+        wait.until(ExpectedConditions.visibilityOf(searchButton));
         wait.until(ExpectedConditions.elementToBeClickable(searchButton));
         searchButton.click();
     }
@@ -84,9 +95,9 @@ public class TestPage {
      */
     public void dismissGooglePopUp() {
         try {
-            wait.until(ExpectedConditions.
-                    elementToBeClickable(popUpDontAcceptButton));
+            this.driverInstance.switchTo().frame(googleIframe);
             popUpDontAcceptButton.click();
+            this.driverInstance.switchTo().defaultContent();
         } catch (Exception e) {
             System.out.println("popup was not present");
         }
