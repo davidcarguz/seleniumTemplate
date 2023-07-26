@@ -1,6 +1,5 @@
 package pages;
 
-import core.Driver;
 import core.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,13 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class TestPage extends Driver {
-
-    /**
-     * WebDriver variable.
-     */
-    private final WebDriver driver;
-
+public class TestPage {
     /**
      * Wait time in seconds.
      */
@@ -41,14 +34,19 @@ public class TestPage extends Driver {
     /**
      * Title in left side.
      */
-    @FindBy(css = "div[class='SPZz6b'] h2 span")
+    @FindBy(xpath = "//span[@role = 'heading' and  @class = 'yKMVIe']")
     private WebElement sideTitle;
     /**
-     * Test page constructor.
+     * Do not Access pop up Google button.
      */
-    public TestPage() {
+    @FindBy(css = "button[data-dismiss='n']")
+    private WebElement popUpDontAcceptButton;
+    /**
+     * Test page constructor.
+     * @param driver WebDriver instance.
+     */
+    public TestPage(final WebDriver driver) {
         DriverManager driverManager = new DriverManager();
-        driver = getDriver();
         driverManager.initiatePage(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(waitTime));
     }
@@ -81,4 +79,14 @@ public class TestPage extends Driver {
         return sideTitle.getText();
     }
 
+    /**
+     * Closes the Google popup when is present.
+     */
+    public void dismissGooglePopUp() {
+        try {
+            popUpDontAcceptButton.click();
+        } catch (Exception e) {
+            System.out.println("popup was not present");
+        }
+    }
 }

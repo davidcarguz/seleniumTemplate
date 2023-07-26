@@ -9,14 +9,24 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    testngVersion = '7.7.1'
+    cucumberVersion = '7.13.0'
+    seleniumVersion = '4.9.0'
+    webDriverManagerVersion = '2.2.4'
+    truthVersion = '1.1.3'
+    allureVersion = '2.22.0'
+}
+
 dependencies {
-    implementation 'org.testng:testng:7.7.1'
-    implementation 'org.seleniumhq.selenium:selenium-java:4.9.0'
-    implementation 'io.cucumber:cucumber-java:7.12.1'
-    implementation 'io.cucumber:cucumber-testng:7.12.1'
-    implementation 'ru.sbtqa:webdrivermanager:2.2.4'
-    implementation 'com.google.truth:truth:1.1.3'
-    implementation 'io.qameta.allure:allure-cucumber7-jvm:2.22.0'
+    implementation "org.testng:testng:${testngVersion}"
+    implementation "org.seleniumhq.selenium:selenium-java:${seleniumVersion}"
+    implementation "io.cucumber:cucumber-java:${cucumberVersion}"
+    implementation "io.cucumber:cucumber-testng:${cucumberVersion}"
+    implementation "io.cucumber:cucumber-picocontainer:${cucumberVersion}"
+    implementation "ru.sbtqa:webdrivermanager:${webDriverManagerVersion}"
+    implementation "com.google.truth:truth:${truthVersion}"
+    implementation "io.qameta.allure:allure-cucumber7-jvm:${allureVersion}"
 
 }
 

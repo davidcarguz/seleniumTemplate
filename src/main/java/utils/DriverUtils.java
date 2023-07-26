@@ -35,7 +35,7 @@ public final class DriverUtils {
                 if (Objects.equals(headless, "true")) {
                     chromeOptions.addArguments("--headless=new");
                 }
-                ChromeDriverManager.getInstance().version("113.0").setup();
+                ChromeDriverManager.getInstance().setup();
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "FIREFOX":
