@@ -11,7 +11,7 @@ public class DriverBuilder {
      */
     private final WebDriver driver;
     /**
-     * Constructor.
+     * Initializes driver in constructor.
      */
     public DriverBuilder() {
         PropertiesManager.setPropertiesFromFile();
