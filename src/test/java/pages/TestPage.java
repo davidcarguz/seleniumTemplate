@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.Constants;
 
 import java.time.Duration;
 
@@ -54,10 +55,7 @@ public class TestPage {
     public TestPage(final WebDriver driver) {
         DriverManager driverManager = new DriverManager();
         driverManager.initiatePage(driver, this);
-        /**
-         * Wait time in seconds.
-         */
-        int waitTime = 3;
+        int waitTime = Constants.WAIT_TIME_IN_SECONDS;
         wait = new WebDriverWait(driver, Duration.ofSeconds(waitTime));
         this.driverInstance = driver;
     }
@@ -108,9 +106,13 @@ public class TestPage {
      * Clicks on the record in search dropdown.
      * @param searchWord to be searched.
      */
-    public void clickSearchResultRecord(String searchWord) {
-        final String locator = String.format("//li[@data-entityname='%s']", searchWord);
-        WebElement resultRecord = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+    public void clickSearchResultRecord(final String searchWord) {
+        final String locator = String.
+                format("//li[@data-entityname='%s']", searchWord);
+        WebElement resultRecord = wait.
+                until(ExpectedConditions.
+                        visibilityOfElementLocated(By.xpath(locator)
+                        ));
         resultRecord.click();
     }
 }
