@@ -7,5 +7,5 @@ public class Constants {
     /**
      * Sets the waiting time for explicit waits.
      */
-    public static final int WAIT_TIME_IN_SECONDS = 3;
+    public final static int WAIT_TIME_IN_SECONDS = 3;
 }
