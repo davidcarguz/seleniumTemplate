@@ -104,6 +104,10 @@ public class TestPage {
         }
     }
 
+    /**
+     * Clicks on the record in search dropdown.
+     * @param searchWord to be searched.
+     */
     public void clickSearchResultRecord(String searchWord) {
         final String locator = String.format("//li[@data-entityname='%s']", searchWord);
         WebElement resultRecord = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
