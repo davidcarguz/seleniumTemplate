@@ -32,7 +32,7 @@ Run the tests
 
 ## Allure Report
 The framework uses Allure to generate the report. It is necessary to install the Allure server locally.
-- the following link explains the instalation process in different systems: [Allure Installation](https://docs.qameta.io/allure/#_installing_a_commandline)
+- the following link explains the installation process in different systems: [Allure Installation](https://docs.qameta.io/allure/#_installing_a_commandline)
 
 After running the tests open a terminal window in the project path and run the following command:
 ```bash

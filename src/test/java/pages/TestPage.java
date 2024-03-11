@@ -1,6 +1,7 @@
 package pages;
 
 import core.DriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,15 +15,11 @@ public class TestPage {
      * Driver instance.
      */
     private final WebDriver driverInstance;
-    /**
-     * Wait time in seconds.
-     */
-    private final int waitTime = 3;
 
     /**
      * WebDriverWait variable.
      */
-    private WebDriverWait wait;
+    private final WebDriverWait wait;
 
     /**
      * Search text area.
@@ -38,8 +35,8 @@ public class TestPage {
     /**
      * Title in left side.
      */
-    @FindBy(xpath = "//span[@role = 'heading' and  @class = 'yKMVIe']")
-    private WebElement sideTitle;
+    @FindBy(xpath = "//div[@data-attrid='title']")
+    private WebElement title;
     /**
      * Do not Access pop up Google button.
      */
@@ -57,6 +54,10 @@ public class TestPage {
     public TestPage(final WebDriver driver) {
         DriverManager driverManager = new DriverManager();
         driverManager.initiatePage(driver, this);
+        /**
+         * Wait time in seconds.
+         */
+        int waitTime = 3;
         wait = new WebDriverWait(driver, Duration.ofSeconds(waitTime));
         this.driverInstance = driver;
     }
@@ -86,8 +87,8 @@ public class TestPage {
      * @return String side title text
      */
     public String getSideTitleText() {
-        wait.until(ExpectedConditions.visibilityOf(sideTitle));
-        return sideTitle.getText();
+        wait.until(ExpectedConditions.visibilityOf(title));
+        return title.getText();
     }
 
     /**
@@ -101,5 +102,11 @@ public class TestPage {
         } catch (Exception e) {
             System.out.println("popup was not present");
         }
+    }
+
+    public void clickSearchResultRecord(String searchWord) {
+        final String locator = String.format("//li[@data-entityname='%s']", searchWord);
+        WebElement resultRecord = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+        resultRecord.click();
     }
 }
