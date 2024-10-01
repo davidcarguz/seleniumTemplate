@@ -1,6 +1,8 @@
 package utils;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.EdgeDriverManager;
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -30,11 +32,9 @@ public final class DriverUtils {
         switch (browser) {
             case "CHROME":
                 ChromeOptions chromeOptions = new ChromeOptions();
-                System.out.println("AQUI ESTOYYYY");
                 if (Objects.equals(headless, "true")) {
                     chromeOptions.addArguments("--headless=new");
                 }
-                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "FIREFOX":
@@ -42,7 +42,6 @@ public final class DriverUtils {
                 if (Objects.equals(headless, "true")) {
                     firefoxOptions.addArguments("--headless");
                 }
-                WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
                 break;
             case "EDGE":
@@ -50,7 +49,6 @@ public final class DriverUtils {
                 if (Objects.equals(headless, "true")) {
                     edgeOptions.addArguments("--headless");
                 }
-                WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
                 break;
             default:

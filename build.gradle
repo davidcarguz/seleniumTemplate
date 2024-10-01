@@ -24,7 +24,6 @@ dependencies {
     implementation "io.cucumber:cucumber-java:${cucumberVersion}"
     implementation "io.cucumber:cucumber-testng:${cucumberVersion}"
     implementation "io.cucumber:cucumber-picocontainer:${cucumberVersion}"
-    implementation "io.github.bonigarcia:webdrivermanager:${webDriverManagerVersion}"
     implementation "com.google.truth:truth:${truthVersion}"
     implementation "io.qameta.allure:allure-cucumber7-jvm:${allureVersion}"
 
