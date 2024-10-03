@@ -2,8 +2,26 @@ package core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import utils.DriverUtils;
+import utils.PropertiesManager;
 
-public class DriverManager {
+public class DriverBuilder {
+
+    /**
+     * WebDriver variable to execute test over the browser.
+     */
+    protected WebDriver driver;
+    /**
+     * Initializes driver in constructor.
+     */
+    public void setup() {
+        PropertiesManager.setPropertiesFromFile();
+        if(this.driver == null) {
+            this.driver = DriverUtils.initDriver(System.getProperty("BROWSER"),
+                    System.getProperty("CI"));
+        }
+    }
+
     /**
      * Creates basic driver configuration.
      * @param driver instance.
@@ -19,15 +37,6 @@ public class DriverManager {
      */
     public void terminateDriver(final WebDriver driver) {
         driver.quit();
-    }
-
-    /**
-     * Implements page factory in specified page.
-     * @param driver instance.
-     * @param page page instance.
-     */
-    public void initiatePage(final WebDriver driver, final Object page) {
-        PageFactory.initElements(driver, page);
     }
 
 }

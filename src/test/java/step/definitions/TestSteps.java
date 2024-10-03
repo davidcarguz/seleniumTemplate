@@ -1,11 +1,10 @@
 package step.definitions;
 
-import core.DriverBuilder;
+import core.Context;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import static com.google.common.truth.Truth.assertThat;
 
-import org.openqa.selenium.WebDriver;
 import pages.TestPage;
 
 public final class TestSteps {
@@ -18,9 +17,8 @@ public final class TestSteps {
      * TestSteps constructor method.
      * @param driverBuilder instance.
      */
-    public TestSteps(final DriverBuilder driverBuilder) {
-        WebDriver driver = driverBuilder.getDriver();
-        testPage = new TestPage(driver);
+    public TestSteps(final Context context) {
+        this.testPage = context.getTestPage();
     }
 
     /**

@@ -1,7 +1,6 @@
 package step.definitions;
 
-import core.DriverBuilder;
-import core.DriverManager;
+import core.Context;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -14,11 +13,8 @@ import java.io.ByteArrayInputStream;
 
 
 public class Hooks {
-    /**
-     * DriverManager instance which handles driver configuration.
-     */
-    private final DriverManager driverManager;
 
+    private final Context context;
     /**
      * WebDriver instance.
      */
@@ -28,9 +24,9 @@ public class Hooks {
      * Instantiates the cucumber hooks.
      * @param driverBuilder instance
      */
-    public Hooks(final DriverBuilder driverBuilder) {
-        this.driver = driverBuilder.getDriver();
-        driverManager = new DriverManager();
+    public Hooks(final Context context) {
+        this.context = context;
+        this.driver = context.getDriver();
     }
 
     /**
@@ -39,7 +35,7 @@ public class Hooks {
     @Before
     public void beforeHook() {
         PropertiesManager.setPropertiesFromFile();
-        driverManager.setupDriver(this.driver);
+        context.setupDriver(this.driver);
     }
 
     /**
@@ -51,6 +47,6 @@ public class Hooks {
         byte[] screenshot = DriverUtils.getScreenshotAsBytes(this.driver);
         Allure.addAttachment(scenario.getName(),
                 new ByteArrayInputStream(screenshot));
-        driverManager.terminateDriver(this.driver);
+        context.terminateDriver(this.driver);
     }
 }
