@@ -1,11 +1,13 @@
 package core;
 
 import org.openqa.selenium.WebDriver;
-import pages.TestPage;
+import pages.ResultsPage;
+import pages.SearchPage;
 
 public class Context extends DriverBuilder{
 
-    private TestPage testPage;
+    private SearchPage searchPage;
+    private ResultsPage resultsPage;
 
     public Context() {
         setup();
@@ -18,12 +20,29 @@ public class Context extends DriverBuilder{
         return this.driver;
     }
 
-    public TestPage getTestPage()
+    /**
+     * Creates an instance of SearchPage or returns one if already exists.
+     * @return instance of searchPage.
+     */
+    public SearchPage getTestPage()
     {
-        if(testPage==null)
+        if(searchPage == null)
         {
-            testPage = new TestPage(driver);
+            searchPage = new SearchPage(driver);
         }
-        return testPage;
+        return searchPage;
+    }
+
+    /**
+     * Creates an instance of resultsPage or returns one if already exists.
+     * @return instance of resultsPage.
+     */
+    public ResultsPage getResultsPage() {
+        if( resultsPage == null ) {
+            resultsPage = new ResultsPage(driver);
+        } else {
+            return resultsPage;
+        }
+        return resultsPage;
     }
 }

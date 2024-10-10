@@ -22,7 +22,7 @@ public class Hooks {
 
     /**
      * Instantiates the cucumber hooks.
-     * @param driverBuilder instance
+     * @param context instance
      */
     public Hooks(final Context context) {
         this.context = context;
