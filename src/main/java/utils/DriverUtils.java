@@ -1,8 +1,5 @@
 package utils;
 
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import io.github.bonigarcia.wdm.EdgeDriverManager;
-import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;

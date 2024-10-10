@@ -11,7 +11,7 @@ import utils.Constants;
 
 import java.time.Duration;
 
-public class TestPage {
+public class SearchPage {
     /**
      * Driver instance.
      */
@@ -33,11 +33,7 @@ public class TestPage {
      */
     @FindBy(xpath = "(//input[@class='gNO89b'])[2]")
     private WebElement searchButton;
-    /**
-     * Title in left side.
-     */
-    @FindBy(xpath = "//div[@data-attrid='title']")
-    private WebElement title;
+
     /**
      * Do not Access pop up Google button.
      */
@@ -52,7 +48,7 @@ public class TestPage {
      * Test page constructor.
      * @param driver WebDriver instance.
      */
-    public TestPage(final WebDriver driver) {
+    public SearchPage(final WebDriver driver) {
         DriverManager driverManager = new DriverManager();
         driverManager.initiatePage(driver, this);
         int waitTime = Constants.WAIT_TIME_IN_SECONDS;
@@ -65,7 +61,7 @@ public class TestPage {
      * @param word to be searched
      * @return TestPage instance
      */
-    public TestPage searchForAWord(final String word) {
+    public SearchPage searchForAWord(final String word) {
         wait.until(ExpectedConditions.visibilityOf(searchTextArea));
         searchTextArea.sendKeys(word);
         return this;
@@ -78,15 +74,6 @@ public class TestPage {
         wait.until(ExpectedConditions.visibilityOf(searchButton));
         wait.until(ExpectedConditions.elementToBeClickable(searchButton));
         searchButton.click();
-    }
-
-    /**
-     * Gets the side title text.
-     * @return String side title text
-     */
-    public String getSideTitleText() {
-        wait.until(ExpectedConditions.visibilityOf(title));
-        return title.getText();
     }
 
     /**

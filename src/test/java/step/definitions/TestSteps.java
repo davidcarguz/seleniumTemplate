@@ -1,26 +1,27 @@
 package step.definitions;
 
-import core.DriverBuilder;
+import core.Context;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import static com.google.common.truth.Truth.assertThat;
 
-import org.openqa.selenium.WebDriver;
-import pages.TestPage;
+import pages.ResultsPage;
+import pages.SearchPage;
 
 public final class TestSteps {
 
     /**
      * testPage holds ui interactions logic.
      */
-    private final TestPage testPage;
+    private final SearchPage searchPage;
+    private final ResultsPage resultsPage;
     /**
      * TestSteps constructor method.
-     * @param driverBuilder instance.
+     * @param context instance.
      */
-    public TestSteps(final DriverBuilder driverBuilder) {
-        WebDriver driver = driverBuilder.getDriver();
-        testPage = new TestPage(driver);
+    public TestSteps(final Context context) {
+        this.searchPage = context.getTestPage();
+        this.resultsPage = context.getResultsPage();
     }
 
     /**
@@ -29,8 +30,8 @@ public final class TestSteps {
      */
     @When("I search for {string}")
     public void iSearchFor(final String searchWord) {
-        testPage.dismissGooglePopUp();
-        testPage.searchForAWord(searchWord).clickSearchResultRecord(searchWord);
+        searchPage.dismissGooglePopUp();
+        searchPage.searchForAWord(searchWord).clickSearchResultRecord(searchWord);
     }
 
     /**
@@ -39,7 +40,7 @@ public final class TestSteps {
      */
     @Then("I see results include the word {string}")
     public void iSeeResultsIncludeTheWord(final String searchedWord) {
-        String obtainedWord = testPage.getSideTitleText();
+        String obtainedWord = resultsPage.getSideTitleText();
         assertThat(obtainedWord).matches(searchedWord);
     }
 
